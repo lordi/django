@@ -29,6 +29,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import os, sys, time, signal
+from django.conf import settings
 
 try:
     from django.utils.six.moves import _thread as thread
@@ -55,6 +56,7 @@ _win = (sys.platform == "win32")
 def code_changed():
     global _mtimes, _win
     filenames = [getattr(m, "__file__", None) for m in sys.modules.values()]
+    filenames += list(settings.MONITORED_FILES)
     for filename in filter(None, filenames):
         if filename.endswith(".pyc") or filename.endswith(".pyo"):
             filename = filename[:-1]

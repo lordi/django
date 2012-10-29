@@ -585,3 +585,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+# A list of files that will trigger a reload of the development
+# server when changed (additional to the python source files)
+MONITORED_FILES = ()
